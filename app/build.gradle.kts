@@ -90,6 +90,6 @@ dependencies {
     androidTestImplementation(Libs.androidTestRunner)
     androidTestImplementation(Libs.espresso)
 
-//    implementation(project(":domain"))
-//    implementation(project(":data"))
+    implementation(project(":domain"))
+    implementation(project(":data"))
 }
