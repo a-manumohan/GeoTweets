@@ -8,11 +8,11 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 abstract class UseCase<out Type, in Params> where Type : Any {
-    abstract suspend fun run(params: Params): Either<Failure, Type>
+    abstract suspend fun run(vararg params: Params): Either<Failure, Type>
 
-    operator fun invoke(params: Params, onComplete: (Either<Failure, Type>) -> Unit = {}) {
+    operator fun invoke(vararg params: Params, onComplete: (Either<Failure, Type>) -> Unit = {}) {
         val job = CoroutineScope(Dispatchers.IO).async {
-            run(params)
+            run(*params)
         }
 
         CoroutineScope(Dispatchers.Main).launch {
