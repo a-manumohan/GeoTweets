@@ -18,7 +18,6 @@ dependencies {
     testImplementation(Libs.junitApi)
     testImplementation(Libs.coroutinesTest)
     testRuntimeOnly(Libs.junitRuntime)
-    testRuntimeOnly(Libs.hamKresst)
 }
 
 java {

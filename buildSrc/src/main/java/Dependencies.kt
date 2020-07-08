@@ -21,12 +21,13 @@ object Version {
     const val mockk = "1.9.1.kotlin12"
     const val junitAndroidPlugin = "1.3.2.0"
     const val junit = "5.3.2"
-    const val hamKrest = "1.7.0.0"
     const val navigation = "2.3.0-rc01"
     const val multidex = "2.0.1"
     const val materialComponents = "1.2.0-alpha06"
     const val dagger = "2.24"
     const val okhttp = "4.2.1"
+    const val signPost = "2.0.0"
+    const val okhttpSignPost = "1.1.0"
 }
 
 object Libs {
@@ -64,7 +65,6 @@ object Libs {
         "de.mannodermaus.gradle.plugins:android-junit5:${Version.junitAndroidPlugin}"
     const val junitApi = "org.junit.jupiter:junit-jupiter-api:${Version.junit}"
     const val junitRuntime = "org.junit.jupiter:junit-jupiter-engine:${Version.junit}"
-    const val hamKresst = "com.natpryce:hamkrest:${Version.hamKrest}"
     const val navigationFragment =
         "androidx.navigation:navigation-fragment-ktx:${Version.navigation}"
     const val navigationComponent = "androidx.navigation:navigation-ui-ktx:${Version.navigation}"
@@ -77,4 +77,6 @@ object Libs {
     const val daggerCompiler = "com.google.dagger:dagger-compiler:${Version.dagger}"
     const val okhttp = "com.squareup.okhttp3:okhttp:${Version.okhttp}"
     const val okhttpLogging = "com.squareup.okhttp3:logging-interceptor:${Version.okhttp}"
+    const val signPost = "oauth.signpost:signpost-core:${Version.signPost}"
+    const val okhttpSignPost = "se.akerfeldt:okhttp-signpost:${Version.okhttpSignPost}"
 }

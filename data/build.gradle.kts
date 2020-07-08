@@ -26,7 +26,6 @@ dependencies {
     testImplementation(Libs.mockk)
     testImplementation(Libs.junitApi)
     testRuntimeOnly(Libs.junitRuntime)
-    testRuntimeOnly(Libs.hamKresst)
 }
 
 java {

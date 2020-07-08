@@ -80,13 +80,14 @@ dependencies {
     kapt(Libs.daggerCompiler)
     implementation(Libs.okhttp)
     implementation(Libs.okhttpLogging)
+    implementation(Libs.signPost)
+    implementation(Libs.okhttpSignPost)
 
     debugImplementation(Libs.leakCanaryDebug)
 
     testImplementation(Libs.mockk)
     testImplementation(Libs.junitApi)
     testRuntimeOnly(Libs.junitRuntime)
-    testRuntimeOnly(Libs.hamKresst)
     androidTestImplementation(Libs.androidTestRunner)
     androidTestImplementation(Libs.espresso)
 
