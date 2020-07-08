@@ -9,6 +9,7 @@ plugins {
     kotlin("kapt")
 
     id("quality")
+    id("kotlin-android")
 }
 
 android {
