@@ -36,11 +36,19 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
+            buildConfigField("String", "BASE_URL", "\"https://api.twitter.com\"")
+            buildConfigField("String", "API_KEY", "\"VMB8bFComVulwOqCFNjQXqwtw\"")
+            buildConfigField("String", "API_SECRET", "\"o4cfGL9EjiFff6X6dtm3pO2AoUkjE6X4s6wfwXAukdOaqpdA0y\"")
         }
         getByName("debug") {
             isMinifyEnabled = false
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
+
+            buildConfigField("String", "BASE_URL", "\"https://api.twitter.com\"")
+            buildConfigField("String", "API_KEY", "\"VMB8bFComVulwOqCFNjQXqwtw\"")
+            buildConfigField("String", "API_SECRET", "\"o4cfGL9EjiFff6X6dtm3pO2AoUkjE6X4s6wfwXAukdOaqpdA0y\"")
         }
     }
     compileOptions {
@@ -71,6 +79,7 @@ dependencies {
     implementation(Libs.cardView)
     implementation(Libs.retrofit)
     implementation(Libs.retrofitConverter)
+    implementation(Libs.retrofitScalarConverter)
     implementation(Libs.recyclerView)
     implementation(Libs.annotations)
     implementation(Libs.navigationFragment)

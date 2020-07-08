@@ -8,13 +8,12 @@ import com.mn.geotweets.common.NetworkHandlerImpl
 import com.mn.geotweets.feature.auth.AuthFragment
 import com.mn.geotweets.feature.auth.AuthViewModel
 import com.mn.geotweets.feature.base.ViewModelFactory
-import dagger.Binds
-import dagger.BindsInstance
-import dagger.Component
-import dagger.Module
+import dagger.*
 import dagger.multibindings.IntoMap
+import javax.inject.Singleton
 
-@Component(modules = [ViewModelModule::class, ApplicationModule::class])
+@Component(modules = [ApplicationModule::class])
+@Singleton
 interface ApplicationComponent {
     @Component.Factory
     interface Factory {
@@ -24,24 +23,10 @@ interface ApplicationComponent {
     }
 
     val authComponent: AuthComponent
-
-    fun inject(fragment: AuthFragment)
 }
 
 @Module
 interface ApplicationModule {
     @Binds
     fun networkHandler(networkHandlerImpl: NetworkHandlerImpl): NetworkHandler
-
-    @Binds
-    fun viewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
-}
-
-@Module
-interface ViewModelModule {
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(AuthViewModel::class)
-    fun authViewModel(viewModel: AuthViewModel): ViewModel
 }

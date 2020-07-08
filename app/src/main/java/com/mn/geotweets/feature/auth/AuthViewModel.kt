@@ -9,7 +9,9 @@ class AuthViewModel @Inject constructor(
 ) : BaseViewModel<Auth.State, Auth.Event, Auth.Error>() {
     init {
         getAuthToken {
-
+            it.either({}, {
+                TODO()
+            })
         }
     }
 }

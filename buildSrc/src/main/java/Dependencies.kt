@@ -56,6 +56,7 @@ object Libs {
     const val leakCanaryDebug = "com.squareup.leakcanary:leakcanary-android:${Version.leakCanary}"
     const val retrofit = "com.squareup.retrofit2:retrofit:${Version.retrofit}"
     const val retrofitConverter = "com.squareup.retrofit2:converter-gson:${Version.retrofit}"
+    const val retrofitScalarConverter = "com.squareup.retrofit2:converter-scalars:${Version.retrofit}"
     const val retrofitCallAdapter =
         "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:${Version.retrofitCallAdapter}"
     const val googleServices = "com.google.gms:google-services:${Version.googleServices}"

@@ -11,7 +11,7 @@ class AuthFragment : BaseFragment() {
     override fun layoutId() = R.layout.fragment_auth
 
     override fun viewCreated(view: View) {
-        application.applicationComponent.inject(this)
+        application.applicationComponent.authComponent.inject(this)
 
         withViewModel(authViewModel)
             .state(::handleState)

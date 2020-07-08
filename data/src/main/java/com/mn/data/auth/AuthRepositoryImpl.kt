@@ -1,5 +1,6 @@
 package com.mn.data.auth
 
+import com.mn.data.common.request
 import com.mn.data.common.withNetwork
 import com.mn.domain.NetworkHandler
 import com.mn.domain.common.Either
@@ -13,9 +14,12 @@ class AuthRepositoryImpl @Inject constructor(
     private val networkHandler: NetworkHandler
 ) :
     AuthRepository {
+    private val authTokenMapper by lazy { AuthTokenMapper() }
     override suspend fun getAuthToken(): Either<Failure, AuthToken> {
         return networkHandler.withNetwork {
-            authApi.requestAuthToken()
+            request(authApi.requestAuthToken()) {
+                authTokenMapper(it ?: "")
+            }
         }
     }
 }
