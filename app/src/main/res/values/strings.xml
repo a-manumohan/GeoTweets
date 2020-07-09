@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">GeoTweets</string>
+    <string name="authorize_twitter">Authorize Twitter</string>
+    <string name="network_error">Please check your network connection and try again</string>
+    <string name="something_went_wrong">Something went wrong. Please try later</string>
+    <string name="auth_failed">Authorization failed. Please try again</string>
 </resources>
