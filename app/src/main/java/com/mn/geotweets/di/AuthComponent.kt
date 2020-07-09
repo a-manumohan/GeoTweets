@@ -14,6 +14,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.Subcomponent
 import dagger.multibindings.IntoMap
+import oauth.signpost.http.HttpParameters
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -36,7 +37,13 @@ interface AuthRepositoryModule {
 class AuthModule {
     @Provides
     fun oauthConsumer(): OkHttpOAuthConsumer {
-        return OkHttpOAuthConsumer(BuildConfig.API_KEY, BuildConfig.API_SECRET)
+        val consumer = OkHttpOAuthConsumer(BuildConfig.API_KEY, BuildConfig.API_SECRET)
+        HttpParameters().apply {
+            put("oauth_callback", "geotweets://")
+        }.let {
+            consumer.setAdditionalParameters(it)
+        }
+        return consumer
     }
 
     @Provides

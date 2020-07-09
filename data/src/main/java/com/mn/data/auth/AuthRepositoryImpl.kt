@@ -15,9 +15,10 @@ class AuthRepositoryImpl @Inject constructor(
 ) :
     AuthRepository {
     private val authTokenMapper by lazy { AuthTokenMapper() }
+
     override suspend fun getAuthToken(): Either<Failure, AuthToken> {
         return networkHandler.withNetwork {
-            request(authApi.requestAuthToken()) {
+            request(authApi.requestAuthToken("geotweets://authorize/")) {
                 authTokenMapper(it ?: "")
             }
         }

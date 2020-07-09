@@ -9,7 +9,10 @@ plugins {
     kotlin("kapt")
 
     id("quality")
+
     id("kotlin-android")
+
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {

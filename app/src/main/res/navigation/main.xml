@@ -10,4 +10,23 @@
         android:name="com.mn.geotweets.feature.auth.AuthFragment"
         android:label="fragment_auth"
         tools:layout="@layout/fragment_auth" />
+    <fragment
+        android:id="@+id/authResultFragment"
+        android:name="com.mn.geotweets.feature.auth.AuthResultFragment"
+        android:label="AuthResultFragment"
+        tools:layout="@layout/fragment_auth_result">
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="geotweets://authorize/?oauth_token={oauthToken}&amp;oauth_verifier={oauthVerifier}" />
+        <argument
+            android:name="oauthToken"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="oauthVerifier"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
 </navigation>

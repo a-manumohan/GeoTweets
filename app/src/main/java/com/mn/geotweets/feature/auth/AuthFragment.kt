@@ -1,6 +1,7 @@
 package com.mn.geotweets.feature.auth
 
 import android.view.View
+import androidx.navigation.fragment.navArgs
 import com.mn.geotweets.R
 import com.mn.geotweets.feature.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_auth.*
@@ -20,6 +21,11 @@ class AuthFragment : BaseFragment() {
             .error(::handleError)
 
         setupViews()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        authViewModel.fetchAuthToken()
     }
 
     private fun setupViews() {

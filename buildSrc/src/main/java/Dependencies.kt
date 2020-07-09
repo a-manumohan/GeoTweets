@@ -21,7 +21,7 @@ object Version {
     const val mockk = "1.9.1.kotlin12"
     const val junitAndroidPlugin = "1.3.2.0"
     const val junit = "5.3.2"
-    const val navigation = "2.3.0-rc01"
+    const val navigation = "2.3.0"
     const val multidex = "2.0.1"
     const val materialComponents = "1.2.0-alpha06"
     const val dagger = "2.24"

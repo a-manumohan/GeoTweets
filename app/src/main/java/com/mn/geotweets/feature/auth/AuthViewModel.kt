@@ -13,10 +13,6 @@ class AuthViewModel @Inject constructor(
 
     private var authToken: AuthToken? = null
 
-    init {
-        fetchAuthToken()
-    }
-
     fun fetchAuthToken() {
         getAuthToken {
             it.either(::handleFailure, ::handleAuthToken)
@@ -57,6 +53,10 @@ class AuthViewModel @Inject constructor(
             val authUrl = getAuthUrl(it)
             event(Auth.Event.Authorize(authUrl))
         }
+    }
+
+    fun authTokensReceived(oauthToken: String, oauthVerifier: String?) {
+        TODO(oauthToken)
     }
 
 }
