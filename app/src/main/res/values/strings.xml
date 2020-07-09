@@ -4,4 +4,6 @@
     <string name="network_error">Please check your network connection and try again</string>
     <string name="something_went_wrong">Something went wrong. Please try later</string>
     <string name="auth_failed">Authorization failed. Please try again</string>
+    <string name="please_wait">Please wait...</string>
+    <string name="authorize_again">Authorize Again</string>
 </resources>

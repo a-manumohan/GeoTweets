@@ -11,4 +11,11 @@ interface AuthApi {
     fun requestAuthToken(
         @Field("oauth_callback") url: String
     ): Call<String>
+
+    @POST("oauth/access_token")
+    @FormUrlEncoded
+    fun requestAccessToken(
+        @Field("oauth_token") token: String,
+        @Field("oauth_verifier") verifier: String
+    ): Call<String>
 }

@@ -6,9 +6,9 @@ import com.mn.domain.usecase.UseCase
 import javax.inject.Inject
 
 class GetAuthToken @Inject constructor(private val authRepository: AuthRepository) :
-    UseCase<AuthToken, Unit>() {
+    UseCase<AuthToken, String>() {
 
-    override suspend fun run(vararg params: Unit): Either<Failure, AuthToken> {
-        return authRepository.getAuthToken()
+    override suspend fun run(params: String): Either<Failure, AuthToken> {
+        return authRepository.getAuthToken(params)
     }
 }

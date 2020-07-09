@@ -14,7 +14,7 @@ class AuthViewModel @Inject constructor(
     private var authToken: AuthToken? = null
 
     fun fetchAuthToken() {
-        getAuthToken {
+        getAuthToken(CALLBACK_URL) {
             it.either(::handleFailure, ::handleAuthToken)
         }
     }
@@ -55,8 +55,7 @@ class AuthViewModel @Inject constructor(
         }
     }
 
-    fun authTokensReceived(oauthToken: String, oauthVerifier: String?) {
-        TODO(oauthToken)
+    companion object {
+        private const val CALLBACK_URL = "geotweets://authorize/"
     }
-
 }

@@ -7,6 +7,8 @@ import com.mn.data.auth.AuthRepositoryImpl
 import com.mn.domain.usecase.auth.AuthRepository
 import com.mn.geotweets.BuildConfig
 import com.mn.geotweets.feature.auth.AuthFragment
+import com.mn.geotweets.feature.auth.AuthResultFragment
+import com.mn.geotweets.feature.auth.AuthResultViewModel
 import com.mn.geotweets.feature.auth.AuthViewModel
 import com.mn.geotweets.feature.base.ViewModelFactory
 import dagger.Binds
@@ -25,6 +27,7 @@ import se.akerfeldt.okhttp.signpost.SigningInterceptor
 @Subcomponent(modules = [AuthRepositoryModule::class, AuthModule::class, ViewModelModule::class])
 interface AuthComponent {
     fun inject(fragment: AuthFragment)
+    fun inject(fragment: AuthResultFragment)
 }
 
 @Module
@@ -77,4 +80,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(AuthViewModel::class)
     fun authViewModel(viewModel: AuthViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(AuthResultViewModel::class)
+    fun authResultViewModel(viewModel: AuthResultViewModel): ViewModel
 }

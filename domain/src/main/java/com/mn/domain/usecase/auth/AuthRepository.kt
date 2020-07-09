@@ -4,5 +4,6 @@ import com.mn.domain.common.Either
 import com.mn.domain.common.Failure
 
 interface AuthRepository {
-    suspend fun getAuthToken(): Either<Failure, AuthToken>
+    suspend fun getAuthToken(callbackUrl: String): Either<Failure, AuthToken>
+    suspend fun getAccessToken(token: String, verifier: String): Either<Failure, AccessToken>
 }

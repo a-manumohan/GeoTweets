@@ -1,9 +1,7 @@
 package com.mn.geotweets.feature.auth
 
 interface Auth {
-    sealed class State {
-
-    }
+    sealed class State
 
     sealed class Event {
         data class EnableAuthButton(val enable: Boolean) : Event()

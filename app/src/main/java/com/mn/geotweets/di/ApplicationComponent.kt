@@ -4,7 +4,9 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.mn.domain.NetworkHandler
+import com.mn.domain.common.TokenManager
 import com.mn.geotweets.common.NetworkHandlerImpl
+import com.mn.geotweets.common.TokenManagerImpl
 import com.mn.geotweets.feature.auth.AuthFragment
 import com.mn.geotweets.feature.auth.AuthViewModel
 import com.mn.geotweets.feature.base.ViewModelFactory
@@ -29,4 +31,7 @@ interface ApplicationComponent {
 interface ApplicationModule {
     @Binds
     fun networkHandler(networkHandlerImpl: NetworkHandlerImpl): NetworkHandler
+
+    @Binds
+    fun tokenManager(tokenManagerImpl: TokenManagerImpl): TokenManager
 }

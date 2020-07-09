@@ -16,7 +16,6 @@ class AuthFragment : BaseFragment() {
         application.applicationComponent.authComponent.inject(this)
 
         withViewModel(authViewModel)
-            .state(::handleState)
             .event(::handleEvent)
             .error(::handleError)
 
@@ -32,10 +31,6 @@ class AuthFragment : BaseFragment() {
         authorizeTwitter.setOnClickListener {
             authViewModel.authorizeTwitter()
         }
-    }
-
-    private fun handleState(state: Auth.State) {
-
     }
 
     private fun handleEvent(event: Auth.Event) {

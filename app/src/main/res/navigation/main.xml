@@ -20,13 +20,24 @@
             app:uri="geotweets://authorize/?oauth_token={oauthToken}&amp;oauth_verifier={oauthVerifier}" />
         <argument
             android:name="oauthToken"
-            android:defaultValue="@null"
-            app:argType="string"
-            app:nullable="true" />
+            app:argType="string" />
         <argument
             android:name="oauthVerifier"
-            android:defaultValue="@null"
-            app:argType="string"
-            app:nullable="true" />
+            app:argType="string" />
+        <action
+            android:id="@+id/action_authResultFragment_to_authFragment"
+            app:destination="@id/authFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/authResultFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_authResultFragment_to_tweetMapFragment"
+            app:destination="@id/tweetMapFragment"
+            app:popUpTo="@id/main"
+            app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/tweetMapFragment"
+        android:name="com.mn.geotweets.feature.map.TweetMapFragment"
+        android:label="TweetMapFragment" />
 </navigation>
