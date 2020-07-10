@@ -16,10 +16,13 @@ import com.mn.geotweets.R
 import com.mn.geotweets.feature.base.BaseFragment
 
 class TweetMapFragment : BaseFragment() {
-    override fun layoutId() = R.layout.fragment_tweet_map
+    private val tweetMapViewModel by lazy { viewModel() as TweetMapViewModel }
+
     private lateinit var googleMap: GoogleMap
     private var bundle: Bundle? = null
     private var locationPermissionGranted = false
+
+    override fun layoutId() = R.layout.fragment_tweet_map
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +30,18 @@ class TweetMapFragment : BaseFragment() {
     }
 
     override fun viewCreated(view: View) {
+        application.applicationComponent.mainComponent.inject(this)
         setupMap()
+
+        withViewModel(tweetMapViewModel)
+            .state(::handleState)
+            .event(::handleEvent)
+            .error(::handleError)
     }
+
+    private fun handleState(state: TweetMap.State) {}
+    private fun handleEvent(event: TweetMap.Event) {}
+    private fun handleError(error: TweetMap.Error) {}
 
     private fun setupMap() {
         (childFragmentManager.findFragmentById(R.id.tweetsMap) as SupportMapFragment).getMapAsync {
@@ -80,7 +93,7 @@ class TweetMapFragment : BaseFragment() {
     private fun getDeviceLocation() {
         val fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireActivity());
-        var lastKnownLocation: Location? = null
+        var lastKnownLocation: Location?
         if (locationPermissionGranted) {
             val locationResult = fusedLocationProviderClient.lastLocation
             locationResult.addOnCompleteListener(requireActivity()) { task ->

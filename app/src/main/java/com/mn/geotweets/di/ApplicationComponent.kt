@@ -25,6 +25,7 @@ interface ApplicationComponent {
     }
 
     val authComponent: AuthComponent
+    val mainComponent: MainComponent
 }
 
 @Module
