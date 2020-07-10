@@ -14,7 +14,7 @@ dependencies {
     implementation(Libs.coroutinesAndroid)
     implementation(Libs.coreKtx)
 
-    testImplementation(Libs.mockk)
+
     testImplementation(Libs.junitApi)
     testImplementation(Libs.coroutinesTest)
     testRuntimeOnly(Libs.junitRuntime)

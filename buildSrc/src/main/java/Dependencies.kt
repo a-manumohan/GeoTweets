@@ -12,13 +12,10 @@ object Version {
     const val cardView = "1.0.0"
     const val coreKtx = "1.2.0"
     const val androidTestRunner = "1.1.1"
-    const val espresso = "3.1.1"
     const val leakCanary = "2.0"
     const val retrofit = "2.5.0"
     const val retrofitCallAdapter = "0.9.2"
     const val googleServices = "4.3.3"
-    const val dexCount = "1.0.0"
-    const val mockk = "1.9.1.kotlin12"
     const val junitAndroidPlugin = "1.3.2.0"
     const val junit = "5.3.2"
     const val navigation = "2.3.0"
@@ -28,6 +25,8 @@ object Version {
     const val okhttp = "4.2.1"
     const val signPost = "2.0.0"
     const val okhttpSignPost = "1.1.0"
+    const val googleMaps = "17.0.0"
+    const val location = "17.0.0"
 }
 
 object Libs {
@@ -52,16 +51,15 @@ object Libs {
     const val cardView = "androidx.cardview:cardview:${Version.cardView}"
     const val coreKtx = "androidx.core:core-ktx:${Version.coreKtx}"
     const val androidTestRunner = "androidx.test:runner:${Version.androidTestRunner}"
-    const val espresso = "androidx.test.espresso:espresso-core:${Version.espresso}"
     const val leakCanaryDebug = "com.squareup.leakcanary:leakcanary-android:${Version.leakCanary}"
     const val retrofit = "com.squareup.retrofit2:retrofit:${Version.retrofit}"
     const val retrofitConverter = "com.squareup.retrofit2:converter-gson:${Version.retrofit}"
-    const val retrofitScalarConverter = "com.squareup.retrofit2:converter-scalars:${Version.retrofit}"
+    const val retrofitScalarConverter =
+        "com.squareup.retrofit2:converter-scalars:${Version.retrofit}"
     const val retrofitCallAdapter =
         "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:${Version.retrofitCallAdapter}"
     const val googleServices = "com.google.gms:google-services:${Version.googleServices}"
-    const val dexCount = "com.getkeepsafe.dexcount:dexcount-gradle-plugin:${Version.dexCount}"
-    const val mockk = "io.mockk:mockk:${Version.mockk}"
+    const val location = "com.google.android.gms:play-services-location:${Version.location}"
     const val junitAndroidPlugin =
         "de.mannodermaus.gradle.plugins:android-junit5:${Version.junitAndroidPlugin}"
     const val junitApi = "org.junit.jupiter:junit-jupiter-api:${Version.junit}"
@@ -80,4 +78,5 @@ object Libs {
     const val okhttpLogging = "com.squareup.okhttp3:logging-interceptor:${Version.okhttp}"
     const val signPost = "oauth.signpost:signpost-core:${Version.signPost}"
     const val okhttpSignPost = "se.akerfeldt:okhttp-signpost:${Version.okhttpSignPost}"
+    const val googleMaps = "com.google.android.gms:play-services-maps:${Version.googleMaps}"
 }

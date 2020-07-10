@@ -95,14 +95,14 @@ dependencies {
     implementation(Libs.okhttpLogging)
     implementation(Libs.signPost)
     implementation(Libs.okhttpSignPost)
+    implementation(Libs.location)
+    implementation(Libs.googleMaps)
 
     debugImplementation(Libs.leakCanaryDebug)
 
-    testImplementation(Libs.mockk)
     testImplementation(Libs.junitApi)
     testRuntimeOnly(Libs.junitRuntime)
     androidTestImplementation(Libs.androidTestRunner)
-    androidTestImplementation(Libs.espresso)
 
     implementation(project(":domain"))
     implementation(project(":data"))

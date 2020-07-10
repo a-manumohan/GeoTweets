@@ -4,6 +4,12 @@
     <string name="network_error">Please check your network connection and try again</string>
     <string name="something_went_wrong">Something went wrong. Please try later</string>
     <string name="auth_failed">Authorization failed. Please try again</string>
-    <string name="please_wait">Please wait...</string>
+    <string name="please_wait">Please wait…</string>
     <string name="authorize_again">Authorize Again</string>
+    <string name="location_rationale">This app needs to access the location of your device to work properly</string>
+    <string name="title_location_permission">Location permission is required</string>
+    <string name="message_location_permission">This app requires the location of your device to work properly. Tap OK to allow location permission. Tap CANCEL to exit the app.</string>
+    <string name="ok">OK</string>
+    <string name="cancel">CANCEL</string>
+    <string name="title_no_location">Location not available</string>
 </resources>

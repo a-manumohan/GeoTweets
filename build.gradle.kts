@@ -11,7 +11,6 @@ buildscript {
         classpath("com.android.tools.build:gradle:4.0.0")
         classpath(Libs.kotlinPlugin)
         classpath(Libs.googleServices)
-        classpath(Libs.dexCount)
         classpath(Libs.junitAndroidPlugin)
         classpath(Libs.safeArgs)
         "classpath"("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")

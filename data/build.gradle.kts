@@ -23,7 +23,6 @@ dependencies {
 
     implementation(project(":domain"))
 
-    testImplementation(Libs.mockk)
     testImplementation(Libs.junitApi)
     testRuntimeOnly(Libs.junitRuntime)
 }
