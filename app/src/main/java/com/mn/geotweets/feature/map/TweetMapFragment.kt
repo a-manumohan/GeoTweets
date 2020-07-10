@@ -92,7 +92,7 @@ class TweetMapFragment : BaseFragment() {
     @SuppressLint("MissingPermission")
     private fun getDeviceLocation() {
         val fusedLocationProviderClient =
-            LocationServices.getFusedLocationProviderClient(requireActivity());
+            LocationServices.getFusedLocationProviderClient(requireActivity())
         var lastKnownLocation: Location?
         if (locationPermissionGranted) {
             val locationResult = fusedLocationProviderClient.lastLocation
@@ -105,7 +105,7 @@ class TweetMapFragment : BaseFragment() {
                                 LatLng(
                                     lastKnownLocation!!.latitude,
                                     lastKnownLocation!!.longitude
-                                ), 5.toFloat()
+                                ), ZOOM.toFloat()
                             )
                         )
                     }
@@ -113,7 +113,6 @@ class TweetMapFragment : BaseFragment() {
             }
         }
     }
-
 
     @SuppressLint("MissingPermission")
     private fun updateMap() {
@@ -133,5 +132,6 @@ class TweetMapFragment : BaseFragment() {
 
     companion object {
         private const val RC_LOCATION_PERMISSION = 1000
+        private const val ZOOM = 5
     }
 }

@@ -11,7 +11,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
-abstract class BaseViewModel<S, Ev, Er>() :
+abstract class BaseViewModel<S, Ev, Er> :
     ViewModel() {
     private val viewModelJob: Job = SupervisorJob()
 

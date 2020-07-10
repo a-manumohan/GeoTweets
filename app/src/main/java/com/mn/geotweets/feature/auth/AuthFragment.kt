@@ -1,7 +1,6 @@
 package com.mn.geotweets.feature.auth
 
 import android.view.View
-import androidx.navigation.fragment.navArgs
 import com.mn.geotweets.R
 import com.mn.geotweets.feature.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_auth.*

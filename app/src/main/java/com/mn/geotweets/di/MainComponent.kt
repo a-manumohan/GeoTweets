@@ -2,7 +2,6 @@ package com.mn.geotweets.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.mn.data.auth.AuthApi
 import com.mn.data.tweets.TweetsApi
 import com.mn.data.tweets.TweetsRepositoryImpl
 import com.mn.domain.common.TokenManager

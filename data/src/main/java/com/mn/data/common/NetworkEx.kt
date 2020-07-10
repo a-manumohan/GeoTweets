@@ -4,7 +4,6 @@ import com.mn.domain.NetworkHandler
 import com.mn.domain.common.Either
 import com.mn.domain.common.Failure
 
-
 internal suspend fun <T> NetworkHandler.withNetwork(f: suspend () -> Either<Failure, T>): Either<Failure, T> {
     return if (isConnected) {
         f()
