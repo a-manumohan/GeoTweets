@@ -6,5 +6,11 @@ interface TweetMap {
     }
 
     sealed class Event
-    sealed class Error
+    sealed class Error {
+        object NetworkError : Error()
+        object ServerError : Error()
+        object UnknownError : Error()
+        object Unauthorized : Error()
+        data class GenericError(val message: String) : Error()
+    }
 }

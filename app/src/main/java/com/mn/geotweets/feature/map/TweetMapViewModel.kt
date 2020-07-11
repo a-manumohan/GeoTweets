@@ -33,7 +33,19 @@ class TweetMapViewModel @Inject constructor(private val getTweets: GetTweets) :
     }
 
     private fun handleFailure(failure: Failure) {
+        val err = when (failure) {
+            Failure.NetworkError -> TweetMap.Error.NetworkError
+            Failure.UnknownError -> TweetMap.Error.UnknownError
+            is Failure.GenericException -> TweetMap.Error.GenericError(
+                failure.messages.joinToString(
+                    "\n"
+                )
+            )
+            Failure.ServerError.Unauthorized -> TweetMap.Error.Unauthorized
+            else -> TweetMap.Error.ServerError
+        }
 
+        error(err)
     }
 
     companion object {

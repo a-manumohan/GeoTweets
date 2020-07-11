@@ -39,5 +39,12 @@
     <fragment
         android:id="@+id/tweetMapFragment"
         android:name="com.mn.geotweets.feature.map.TweetMapFragment"
-        android:label="TweetMapFragment" />
+        android:label="TweetMapFragment" >
+        <action
+            android:id="@+id/action_tweetMapFragment_to_authFragment"
+            app:destination="@id/authFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/main"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

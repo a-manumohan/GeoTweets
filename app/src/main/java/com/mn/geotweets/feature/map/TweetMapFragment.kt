@@ -7,6 +7,7 @@ import android.location.Location
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -48,7 +49,18 @@ class TweetMapFragment : BaseFragment() {
     }
 
     private fun handleEvent(event: TweetMap.Event) {}
-    private fun handleError(error: TweetMap.Error) {}
+    private fun handleError(error: TweetMap.Error) {
+        when (error) {
+            TweetMap.Error.NetworkError -> showToast(R.string.network_error)
+            TweetMap.Error.ServerError -> showToast(R.string.something_went_wrong)
+            TweetMap.Error.UnknownError -> showToast(R.string.something_went_wrong)
+            TweetMap.Error.Unauthorized -> {
+                val direction = TweetMapFragmentDirections.actionTweetMapFragmentToAuthFragment()
+                findNavController().navigate(direction)
+            }
+            is TweetMap.Error.GenericError -> showToast(error.message)
+        }
+    }
 
     private fun setupMap() {
         (childFragmentManager.findFragmentById(R.id.tweetsMap) as SupportMapFragment).getMapAsync {
