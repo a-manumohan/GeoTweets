@@ -1,6 +1,7 @@
 package com.mn.data.tweets
 
 import com.mn.data.common.request
+import com.mn.data.common.withNetwork
 import com.mn.domain.NetworkHandler
 import com.mn.domain.common.Either
 import com.mn.domain.common.Failure
@@ -13,9 +14,12 @@ class TweetsRepositoryImpl @Inject constructor(
     private val networkHandler: NetworkHandler
 ) : TweetsRepository {
     private val tweetsMapper by lazy { TweetsMapper() }
-    override suspend fun getTweets(): Either<Failure, List<Tweet>> {
-        return request(tweetsApi.getHomeTimeLine()) {
-            tweetsMapper(it)
+
+    override suspend fun getTweets(count: Int): Either<Failure, List<Tweet>> {
+        return networkHandler.withNetwork {
+            request(tweetsApi.getHomeTimeLine(count)) {
+                tweetsMapper(it)
+            }
         }
     }
 }

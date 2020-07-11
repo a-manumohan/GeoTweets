@@ -6,8 +6,8 @@ import com.mn.domain.usecase.UseCase
 import javax.inject.Inject
 
 class GetTweets @Inject constructor(private val tweetsRepository: TweetsRepository) :
-    UseCase<List<Tweet>, Unit>() {
-    override suspend fun run(params: Unit): Either<Failure, List<Tweet>> {
-        return tweetsRepository.getTweets()
+    UseCase<List<Tweet>, Int>() {
+    override suspend fun run(params: Int): Either<Failure, List<Tweet>> {
+        return tweetsRepository.getTweets(params)
     }
 }

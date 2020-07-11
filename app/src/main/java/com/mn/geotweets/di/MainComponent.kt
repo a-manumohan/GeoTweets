@@ -39,11 +39,7 @@ class MainModule {
     @Provides
     fun oauthConsumer(tokenManager: TokenManager): OkHttpOAuthConsumer {
         val consumer = OkHttpOAuthConsumer(BuildConfig.API_KEY, BuildConfig.API_SECRET)
-        HttpParameters().apply {
-            put("oauth_callback", "geotweets://")
-        }.let {
-            consumer.setAdditionalParameters(it)
-        }
+        consumer.setTokenWithSecret(tokenManager.getToken(), tokenManager.getSecret())
         return consumer
     }
 
