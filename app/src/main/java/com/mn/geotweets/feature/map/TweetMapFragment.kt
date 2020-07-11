@@ -12,6 +12,8 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.gms.maps.model.MarkerOptions
 import com.mn.geotweets.R
 import com.mn.geotweets.feature.base.BaseFragment
 
@@ -39,7 +41,12 @@ class TweetMapFragment : BaseFragment() {
             .error(::handleError)
     }
 
-    private fun handleState(state: TweetMap.State) {}
+    private fun handleState(state: TweetMap.State) {
+        when (state) {
+            is TweetMap.State.Tweets -> addTweetsToMap(state.uiTweets)
+        }
+    }
+
     private fun handleEvent(event: TweetMap.Event) {}
     private fun handleError(error: TweetMap.Error) {}
 
@@ -48,6 +55,24 @@ class TweetMapFragment : BaseFragment() {
             googleMap = it
             getLocationPermission()
         }
+    }
+
+    private fun addTweetsToMap(uiTweets: List<UiTweet>) {
+        googleMap.clear()
+        val builder = LatLngBounds.Builder()
+        uiTweets.map {
+            val location = LatLng(it.lat, it.lng)
+            builder.include(location)
+            MarkerOptions()
+                .title(it.text)
+                .position(location)
+                .snippet(it.username)
+        }.forEach {
+            googleMap.addMarker(it)
+        }
+
+        val cUpdate = CameraUpdateFactory.newLatLngBounds(builder.build(), PADDING)
+        googleMap.animateCamera(cUpdate)
     }
 
     private fun getLocationPermission() {
@@ -133,5 +158,6 @@ class TweetMapFragment : BaseFragment() {
     companion object {
         private const val RC_LOCATION_PERMISSION = 1000
         private const val ZOOM = 5
+        private const val PADDING = 150
     }
 }

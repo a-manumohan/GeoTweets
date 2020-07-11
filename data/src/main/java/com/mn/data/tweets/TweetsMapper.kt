@@ -26,8 +26,8 @@ class TweetsMapper : Mapper<List<TweetResponse>, List<Tweet>> {
         return place?.let {
             val coords = it.boundingBox.coordinates[0][0]
             Tweet.Place(
-                coords[0],
-                coords[1]
+                coords[1],
+                coords[0]
             )
         }
     }
