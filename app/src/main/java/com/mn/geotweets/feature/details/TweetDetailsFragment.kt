@@ -1,4 +1,4 @@
-package com.mn.geotweets.feature.tweets
+package com.mn.geotweets.feature.details
 
 import android.view.View
 import com.mn.geotweets.R

@@ -8,6 +8,7 @@ data class TweetResponse(
     @SerializedName("text") val text: String,
     @SerializedName("truncated") val truncated: Boolean,
     @SerializedName("entities") val entities: Entities,
+    @SerializedName("extended_entities") val extendedEntities: ExtendedEntities?,
     @SerializedName("source") val source: String,
     @SerializedName("in_reply_to_status_id") val in_reply_to_status_id: String,
     @SerializedName("in_reply_to_status_id_str") val in_reply_to_status_id_str: String,
@@ -93,10 +94,23 @@ data class Entities(
     @SerializedName("media") val media: List<Media>?
 )
 
+data class ExtendedEntities(
+    @SerializedName("media") val media: List<Media>?
+)
+
 data class Media(
     @SerializedName("id_str") val id: String,
     @SerializedName("media_url_https") val url: String,
-    @SerializedName("type") val type: String
+    @SerializedName("type") val type: String,
+    @SerializedName("video_info") val videoInfo: VideoInfo?
+)
+
+data class VideoInfo(
+    @SerializedName("variants") val variants: List<Variant>
+)
+
+data class Variant(
+    @SerializedName("url") val url: String
 )
 
 data class Description(

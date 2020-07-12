@@ -10,13 +10,14 @@ class TweetMapper : Mapper<TweetResponse, Tweet> {
 
     private fun getTweet(response: TweetResponse): Tweet {
         return with(response) {
+            val media = getMedia(entities) + getVideoMedia(extendedEntities)
             Tweet(
                 id_str,
                 getUser(user),
                 text,
                 favorited,
                 retweeted,
-                getMedia(entities),
+                media,
                 getPlace(place)
             )
         }
@@ -37,9 +38,28 @@ class TweetMapper : Mapper<TweetResponse, Tweet> {
             Tweet.Media(
                 it.id,
                 it.url,
-                it.type
+                getType(it.type)
             )
         } ?: listOf()
+    }
+
+    private fun getVideoMedia(extendedEntities: ExtendedEntities?): List<Tweet.Media> {
+        return extendedEntities?.let {
+            it.media?.map { media ->
+                Tweet.Media(
+                    media.id,
+                    media.videoInfo?.variants?.get(0)?.url ?: "",
+                    getType(media.type)
+                )
+            }
+        } ?: listOf()
+    }
+
+    private fun getType(type: String): Tweet.Media.Type {
+        return when (type.toLowerCase()) {
+            PHOTO -> Tweet.Media.Type.PHOTO
+            else -> Tweet.Media.Type.VIDEO
+        }
     }
 
     private fun getUser(user: User): Tweet.User {
@@ -49,5 +69,10 @@ class TweetMapper : Mapper<TweetResponse, Tweet> {
             user.name,
             user.profile_image_url_https
         )
+    }
+
+    companion object {
+        private const val PHOTO = "photo"
+        private const val VIDEO = "video"
     }
 }

@@ -53,7 +53,7 @@
     </fragment>
     <fragment
         android:id="@+id/tweetDetailsFragment"
-        android:name="com.mn.geotweets.feature.tweets.TweetDetailsFragment"
+        android:name="com.mn.geotweets.feature.details.TweetDetailsFragment"
         android:label="TweetDetailsFragment"
         tools:layout="@layout/fragment_tweet_details" />
 </navigation>

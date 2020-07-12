@@ -19,8 +19,13 @@ data class Tweet(
     data class Media(
         val id: String,
         val url: String,
-        val type: String
-    )
+        val type: Type
+    ) {
+        enum class Type {
+            PHOTO,
+            VIDEO
+        }
+    }
 
     data class Place(
         val lat: Double,
