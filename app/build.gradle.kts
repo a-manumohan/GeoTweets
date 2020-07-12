@@ -1,4 +1,3 @@
-
 plugins {
     id("com.android.application")
 
@@ -42,7 +41,11 @@ android {
 
             buildConfigField("String", "BASE_URL", "\"https://api.twitter.com\"")
             buildConfigField("String", "API_KEY", "\"VMB8bFComVulwOqCFNjQXqwtw\"")
-            buildConfigField("String", "API_SECRET", "\"o4cfGL9EjiFff6X6dtm3pO2AoUkjE6X4s6wfwXAukdOaqpdA0y\"")
+            buildConfigField(
+                "String",
+                "API_SECRET",
+                "\"o4cfGL9EjiFff6X6dtm3pO2AoUkjE6X4s6wfwXAukdOaqpdA0y\""
+            )
         }
         getByName("debug") {
             isMinifyEnabled = false
@@ -51,7 +54,11 @@ android {
 
             buildConfigField("String", "BASE_URL", "\"https://api.twitter.com\"")
             buildConfigField("String", "API_KEY", "\"VMB8bFComVulwOqCFNjQXqwtw\"")
-            buildConfigField("String", "API_SECRET", "\"o4cfGL9EjiFff6X6dtm3pO2AoUkjE6X4s6wfwXAukdOaqpdA0y\"")
+            buildConfigField(
+                "String",
+                "API_SECRET",
+                "\"o4cfGL9EjiFff6X6dtm3pO2AoUkjE6X4s6wfwXAukdOaqpdA0y\""
+            )
         }
     }
     compileOptions {
@@ -97,6 +104,8 @@ dependencies {
     implementation(Libs.okhttpSignPost)
     implementation(Libs.location)
     implementation(Libs.googleMaps)
+    implementation(Libs.glide)
+    kapt(Libs.glideCompiler)
 
     debugImplementation(Libs.leakCanaryDebug)
 

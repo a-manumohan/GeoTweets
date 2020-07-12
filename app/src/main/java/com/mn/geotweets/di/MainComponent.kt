@@ -8,6 +8,8 @@ import com.mn.domain.common.TokenManager
 import com.mn.domain.usecase.tweets.TweetsRepository
 import com.mn.geotweets.BuildConfig
 import com.mn.geotweets.feature.base.ViewModelFactory
+import com.mn.geotweets.feature.details.TweetDetailsFragment
+import com.mn.geotweets.feature.details.TweetDetailsViewModel
 import com.mn.geotweets.feature.tweets.TweetMapFragment
 import com.mn.geotweets.feature.tweets.TweetMapViewModel
 import dagger.Binds
@@ -25,6 +27,7 @@ import se.akerfeldt.okhttp.signpost.SigningInterceptor
 @Subcomponent(modules = [MainModule::class, MainRepositoryModule::class, MainViewModelModule::class])
 interface MainComponent {
     fun inject(fragment: TweetMapFragment)
+    fun inject(fragment: TweetDetailsFragment)
 }
 
 @Module
@@ -72,4 +75,9 @@ interface MainViewModelModule {
     @IntoMap
     @ViewModelKey(TweetMapViewModel::class)
     fun tweetMapViewModel(viewModel: TweetMapViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(TweetDetailsViewModel::class)
+    fun tweetDetailsViewModel(viewModel: TweetDetailsViewModel): ViewModel
 }

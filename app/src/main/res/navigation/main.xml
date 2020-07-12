@@ -55,5 +55,15 @@
         android:id="@+id/tweetDetailsFragment"
         android:name="com.mn.geotweets.feature.details.TweetDetailsFragment"
         android:label="TweetDetailsFragment"
-        tools:layout="@layout/fragment_tweet_details" />
+        tools:layout="@layout/fragment_tweet_details" >
+        <argument
+            android:name="tweetId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_tweetDetailsFragment_to_authFragment"
+            app:destination="@id/authFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/main"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

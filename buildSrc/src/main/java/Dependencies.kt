@@ -27,6 +27,7 @@ object Version {
     const val okhttpSignPost = "1.1.0"
     const val googleMaps = "17.0.0"
     const val location = "17.0.0"
+    const val glide = "4.11.0"
 }
 
 object Libs {
@@ -79,4 +80,6 @@ object Libs {
     const val signPost = "oauth.signpost:signpost-core:${Version.signPost}"
     const val okhttpSignPost = "se.akerfeldt:okhttp-signpost:${Version.okhttpSignPost}"
     const val googleMaps = "com.google.android.gms:play-services-maps:${Version.googleMaps}"
+    const val glide = "com.github.bumptech.glide:glide:${Version.glide}"
+    const val glideCompiler = "com.github.bumptech.glide:compiler:${Version.glide}"
 }

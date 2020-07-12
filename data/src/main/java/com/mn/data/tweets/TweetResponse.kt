@@ -3,7 +3,7 @@ package com.mn.data.tweets
 import com.google.gson.annotations.SerializedName
 
 data class TweetResponse(
-    @SerializedName("created_at") val created_at: String,
+    @SerializedName("created_at") val createdAt: String,
     @SerializedName("id_str") val id_str: String,
     @SerializedName("text") val text: String,
     @SerializedName("truncated") val truncated: Boolean,

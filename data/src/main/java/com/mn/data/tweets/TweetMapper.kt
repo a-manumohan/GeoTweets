@@ -18,7 +18,8 @@ class TweetMapper : Mapper<TweetResponse, Tweet> {
                 favorited,
                 retweeted,
                 media,
-                getPlace(place)
+                getPlace(place),
+                createdAt
             )
         }
     }

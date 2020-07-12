@@ -53,7 +53,8 @@ class TweetMapFragment : BaseFragment() {
         when (event) {
             is TweetMap.Event.GoToDetails -> {
                 val direction =
-                    TweetMapFragmentDirections.actionTweetMapFragmentToTweetDetailsFragment()
+                    TweetMapFragmentDirections
+                        .actionTweetMapFragmentToTweetDetailsFragment(event.tweetId)
                 findNavController().navigate(direction)
             }
         }

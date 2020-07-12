@@ -7,7 +7,8 @@ data class Tweet(
     val favorited: Boolean,
     val retweeted: Boolean,
     val media: List<Media>,
-    val place: Place?
+    val place: Place?,
+    val createdAt: String
 ) {
     data class User(
         val id: String,
