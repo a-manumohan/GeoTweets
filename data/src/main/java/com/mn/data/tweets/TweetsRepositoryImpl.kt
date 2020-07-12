@@ -13,11 +13,19 @@ class TweetsRepositoryImpl @Inject constructor(
     private val tweetsApi: TweetsApi,
     private val networkHandler: NetworkHandler
 ) : TweetsRepository {
-    private val tweetsMapper by lazy { TweetsMapper() }
+    private val tweetsMapper by lazy { TweetMapper() }
 
     override suspend fun getTweets(count: Int): Either<Failure, List<Tweet>> {
         return networkHandler.withNetwork {
-            request(tweetsApi.getHomeTimeLine(count)) {
+            request(tweetsApi.getHomeTimeLine(count)) { tweets ->
+                tweets.map { tweetsMapper(it) }
+            }
+        }
+    }
+
+    override suspend fun getTweet(id: String): Either<Failure, Tweet> {
+        return networkHandler.withNetwork {
+            request(tweetsApi.getTweet(id)) {
                 tweetsMapper(it)
             }
         }

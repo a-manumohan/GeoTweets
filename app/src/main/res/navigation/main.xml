@@ -38,13 +38,22 @@
     </fragment>
     <fragment
         android:id="@+id/tweetMapFragment"
-        android:name="com.mn.geotweets.feature.map.TweetMapFragment"
-        android:label="TweetMapFragment" >
+        android:name="com.mn.geotweets.feature.tweets.TweetMapFragment"
+        android:label="TweetMapFragment"
+        tools:layout="@layout/fragment_tweet_map">
         <action
             android:id="@+id/action_tweetMapFragment_to_authFragment"
             app:destination="@id/authFragment"
             app:launchSingleTop="true"
             app:popUpTo="@id/main"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_tweetMapFragment_to_tweetDetailsFragment"
+            app:destination="@id/tweetDetailsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/tweetDetailsFragment"
+        android:name="com.mn.geotweets.feature.tweets.TweetDetailsFragment"
+        android:label="TweetDetailsFragment"
+        tools:layout="@layout/fragment_tweet_details" />
 </navigation>

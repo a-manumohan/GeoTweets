@@ -1,4 +1,4 @@
-package com.mn.geotweets.feature.map
+package com.mn.geotweets.feature.tweets
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -24,6 +24,7 @@ class TweetMapFragment : BaseFragment() {
     private lateinit var googleMap: GoogleMap
     private var bundle: Bundle? = null
     private var locationPermissionGranted = false
+    private var lastKnownLocation: Location? = null
 
     override fun layoutId() = R.layout.fragment_tweet_map
 
@@ -48,7 +49,16 @@ class TweetMapFragment : BaseFragment() {
         }
     }
 
-    private fun handleEvent(event: TweetMap.Event) {}
+    private fun handleEvent(event: TweetMap.Event) {
+        when (event) {
+            is TweetMap.Event.GoToDetails -> {
+                val direction =
+                    TweetMapFragmentDirections.actionTweetMapFragmentToTweetDetailsFragment()
+                findNavController().navigate(direction)
+            }
+        }
+    }
+
     private fun handleError(error: TweetMap.Error) {
         when (error) {
             TweetMap.Error.NetworkError -> showToast(R.string.network_error)
@@ -72,19 +82,25 @@ class TweetMapFragment : BaseFragment() {
     private fun addTweetsToMap(uiTweets: List<UiTweet>) {
         googleMap.clear()
         val builder = LatLngBounds.Builder()
-        uiTweets.map {
+        uiTweets.forEach {
             val location = LatLng(it.lat, it.lng)
             builder.include(location)
-            MarkerOptions()
+            val options = MarkerOptions()
                 .title(it.text)
                 .position(location)
                 .snippet(it.username)
-        }.forEach {
-            googleMap.addMarker(it)
+            val marker = googleMap.addMarker(options)
+            marker.tag = it.id
         }
+        googleMap.setOnInfoWindowClickListener { tweetMapViewModel.onMarkerClicked(it.tag as String) }
 
-        val cUpdate = CameraUpdateFactory.newLatLngBounds(builder.build(), PADDING)
-        googleMap.animateCamera(cUpdate)
+        if (uiTweets.isNotEmpty()) {
+            val userLocationLatLng =
+                LatLng(lastKnownLocation?.latitude ?: 0.0, lastKnownLocation?.longitude ?: 0.0)
+            builder.include(userLocationLatLng)
+            val cUpdate = CameraUpdateFactory.newLatLngBounds(builder.build(), PADDING)
+            googleMap.animateCamera(cUpdate)
+        }
     }
 
     private fun getLocationPermission() {
@@ -130,25 +146,31 @@ class TweetMapFragment : BaseFragment() {
     private fun getDeviceLocation() {
         val fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireActivity())
-        var lastKnownLocation: Location?
         if (locationPermissionGranted) {
             val locationResult = fusedLocationProviderClient.lastLocation
             locationResult.addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
                     lastKnownLocation = task.result
-                    if (lastKnownLocation != null) {
-                        googleMap.moveCamera(
-                            CameraUpdateFactory.newLatLngZoom(
-                                LatLng(
-                                    lastKnownLocation!!.latitude,
-                                    lastKnownLocation!!.longitude
-                                ), ZOOM.toFloat()
-                            )
-                        )
-                    }
+                    lastKnownLocation?.let {
+                        moveMapToLocation(it)
+                        tweetMapViewModel.locationReceived(it)
+                    } ?: tweetMapViewModel.locationFailed()
+                } else {
+                    tweetMapViewModel.locationFailed()
                 }
             }
         }
+    }
+
+    private fun moveMapToLocation(lastKnownLocation: Location) {
+        googleMap.moveCamera(
+            CameraUpdateFactory.newLatLngZoom(
+                LatLng(
+                    lastKnownLocation.latitude,
+                    lastKnownLocation.longitude
+                ), ZOOM.toFloat()
+            )
+        )
     }
 
     @SuppressLint("MissingPermission")

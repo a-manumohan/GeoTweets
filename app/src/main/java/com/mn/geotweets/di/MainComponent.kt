@@ -8,14 +8,13 @@ import com.mn.domain.common.TokenManager
 import com.mn.domain.usecase.tweets.TweetsRepository
 import com.mn.geotweets.BuildConfig
 import com.mn.geotweets.feature.base.ViewModelFactory
-import com.mn.geotweets.feature.map.TweetMapFragment
-import com.mn.geotweets.feature.map.TweetMapViewModel
+import com.mn.geotweets.feature.tweets.TweetMapFragment
+import com.mn.geotweets.feature.tweets.TweetMapViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.Subcomponent
 import dagger.multibindings.IntoMap
-import oauth.signpost.http.HttpParameters
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

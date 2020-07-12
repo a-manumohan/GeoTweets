@@ -3,9 +3,9 @@ package com.mn.data.tweets
 import com.mn.data.common.Mapper
 import com.mn.domain.usecase.tweets.Tweet
 
-class TweetsMapper : Mapper<List<TweetResponse>, List<Tweet>> {
-    override fun invoke(t: List<TweetResponse>): List<Tweet> {
-        return t.map { getTweet(it) }
+class TweetMapper : Mapper<TweetResponse, Tweet> {
+    override fun invoke(t: TweetResponse): Tweet {
+        return getTweet(t)
     }
 
     private fun getTweet(response: TweetResponse): Tweet {

@@ -12,4 +12,10 @@ interface TweetsApi {
     fun getHomeTimeLine(
         @Query("count") count: Int
     ): Call<List<TweetResponse>>
+
+    @GET("1.1/statuses/show.json")
+    @Headers("Connection: close")
+    fun getTweet(
+        @Query("id") id: String
+    ) : Call<TweetResponse>
 }

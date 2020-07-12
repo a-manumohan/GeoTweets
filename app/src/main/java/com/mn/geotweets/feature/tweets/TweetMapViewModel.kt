@@ -1,5 +1,6 @@
-package com.mn.geotweets.feature.map
+package com.mn.geotweets.feature.tweets
 
+import android.location.Location
 import com.mn.domain.common.Failure
 import com.mn.domain.usecase.tweets.GetTweets
 import com.mn.domain.usecase.tweets.Tweet
@@ -8,9 +9,8 @@ import javax.inject.Inject
 
 class TweetMapViewModel @Inject constructor(private val getTweets: GetTweets) :
     BaseViewModel<TweetMap.State, TweetMap.Event, TweetMap.Error>() {
-    init {
-        fetchTweets()
-    }
+    private var location: Location? = null
+
 
     private fun fetchTweets() {
         getTweets(TWEET_COUNT) {
@@ -20,8 +20,12 @@ class TweetMapViewModel @Inject constructor(private val getTweets: GetTweets) :
 
     private fun handleTweetsSuccess(tweets: List<Tweet>) {
         tweets
-            .filter { it.place != null }.map {
+            .filter { it.place != null }
+            .filter {
+                isCloseBy(it.place)
+            }.map {
                 UiTweet(
+                    it.id,
                     it.user.screenName,
                     it.text,
                     it.place?.lat ?: 0.0,
@@ -48,7 +52,31 @@ class TweetMapViewModel @Inject constructor(private val getTweets: GetTweets) :
         error(err)
     }
 
+    private fun isCloseBy(place: Tweet.Place?): Boolean {
+        return place?.let {
+            val loc = Location("geo")
+            loc.latitude = it.lat
+            loc.longitude = it.lng
+            val distance = this.location?.distanceTo(loc) ?: 0f
+            distance <= DISTANCE
+        } ?: false
+    }
+
+    fun locationReceived(location: Location) {
+        this.location = location
+        fetchTweets()
+    }
+
+    fun onMarkerClicked(id: String) {
+        event(TweetMap.Event.GoToDetails(id))
+    }
+
+    fun locationFailed() {
+
+    }
+
     companion object {
         private const val TWEET_COUNT = 100
+        private const val DISTANCE = 5000f
     }
 }
