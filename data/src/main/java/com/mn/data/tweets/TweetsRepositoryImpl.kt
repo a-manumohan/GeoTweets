@@ -30,4 +30,16 @@ class TweetsRepositoryImpl @Inject constructor(
             }
         }
     }
+
+    override suspend fun retweet(id: String): Either<Failure, Unit> {
+        return networkHandler.withNetwork {
+            request(tweetsApi.retweet(id)) {}
+        }
+    }
+
+    override suspend fun unReTweet(id: String): Either<Failure, Unit> {
+        return networkHandler.withNetwork {
+            request(tweetsApi.unretweet(id)) {}
+        }
+    }
 }

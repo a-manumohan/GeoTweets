@@ -2,12 +2,18 @@ package com.mn.geotweets.feature.details
 
 import com.mn.domain.common.Failure
 import com.mn.domain.usecase.tweets.GetTweet
+import com.mn.domain.usecase.tweets.ReTweet
 import com.mn.domain.usecase.tweets.Tweet
+import com.mn.domain.usecase.tweets.UnReTweet
 import com.mn.geotweets.feature.base.BaseViewModel
 import com.mn.geotweets.feature.details.TweetDetails
 import javax.inject.Inject
 
-class TweetDetailsViewModel @Inject constructor(private val getTweet: GetTweet) :
+class TweetDetailsViewModel @Inject constructor(
+    private val getTweet: GetTweet,
+    private val reTweet: ReTweet,
+    private val unReTweet: UnReTweet
+) :
     BaseViewModel<TweetDetails.State, TweetDetails.Event, TweetDetails.Error>() {
 
     private var tweet: Tweet? = null
@@ -27,20 +33,45 @@ class TweetDetailsViewModel @Inject constructor(private val getTweet: GetTweet) 
         }
     }
 
+    fun retweet() {
+        tweet?.let {
+            if (it.retweeted.not()) {
+                reTweet(it.id) {
+                    it.either(::handleFailure) { updateTweet(true) }
+                }
+            } else {
+                unReTweet(it.id) {
+                    it.either(::handleFailure) { updateTweet(false) }
+                }
+            }
+        }
+    }
+
+    private fun updateTweet(retweeted: Boolean) {
+        tweet = tweet?.copy(retweeted = retweeted)
+        tweet?.let {
+            val uiTweetDetails = getUiTweetDetails(it)
+            state(TweetDetails.State.Details(uiTweetDetails))
+        }
+    }
+
     private fun handleTweetSuccess(tweet: Tweet) {
         this.tweet = tweet
+        val uiTweetDetails = getUiTweetDetails(tweet)
+        state(TweetDetails.State.Details(uiTweetDetails))
+    }
 
+    private fun getUiTweetDetails(tweet: Tweet): UiTweetDetails {
         val imageUrl = tweet.media.find { it.type == Tweet.Media.Type.PHOTO }?.url
         val showPlayButton = tweet.media.any { it.type == Tweet.Media.Type.VIDEO }
-        UiTweetDetails(
+        return UiTweetDetails(
             tweet.text,
             imageUrl,
             tweet.user.screenName,
             tweet.createdAt,
-            showPlayButton
-        ).let {
-            state(TweetDetails.State.Details(it))
-        }
+            showPlayButton,
+            tweet.retweeted
+        )
     }
 
     private fun handleFailure(failure: Failure) {

@@ -1,8 +1,12 @@
 package com.mn.data.tweets
 
 import retrofit2.Call
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Headers
+import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface TweetsApi {
@@ -17,5 +21,13 @@ interface TweetsApi {
     @Headers("Connection: close")
     fun getTweet(
         @Query("id") id: String
-    ) : Call<TweetResponse>
+    ): Call<TweetResponse>
+
+    @POST("1.1/statuses/retweet/{id}.json")
+    @Headers("Connection: close")
+    fun retweet(@Path("id") id: String): Call<String>
+
+    @POST("1.1/statuses/unretweet/{id}.json")
+    @Headers("Connection: close")
+    fun unretweet(@Path("id") id: String): Call<String>
 }

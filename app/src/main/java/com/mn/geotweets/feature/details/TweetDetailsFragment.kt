@@ -32,6 +32,9 @@ class TweetDetailsFragment : BaseFragment() {
         tweetDetailsView.onPlayVideo = {
             tweetDetailsViewModel.playVideo()
         }
+        tweetDetailsView.onRetweet = {
+            tweetDetailsViewModel.retweet()
+        }
 
         tweetDetailsViewModel.fetchTweetDetails(args.tweetId)
     }
