@@ -26,6 +26,9 @@ class TweetDetailsView @JvmOverloads constructor(
     fun bind(uiTweetDetails: UiTweetDetails) {
         tweetText.text = uiTweetDetails.text
         userName.text = uiTweetDetails.userName
+        uiTweetDetails.userImage?.let {
+            Glide.with(this).load(it).centerInside().into(userProfileImage)
+        }
         time.text = uiTweetDetails.date
         playVideo.visibility = when (uiTweetDetails.showPlayButton) {
             true -> View.VISIBLE
@@ -41,5 +44,6 @@ class TweetDetailsView @JvmOverloads constructor(
             false -> R.drawable.ic_retweet
         }
         retweet.setImageDrawable(ContextCompat.getDrawable(context, retweetIconId))
+
     }
 }

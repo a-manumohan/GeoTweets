@@ -68,6 +68,7 @@ class TweetDetailsViewModel @Inject constructor(
             imageUrl,
             tweet.user.name,
             tweet.user.screenName,
+            tweet.user.pic,
             tweet.createdAt,
             showPlayButton,
             tweet.retweeted

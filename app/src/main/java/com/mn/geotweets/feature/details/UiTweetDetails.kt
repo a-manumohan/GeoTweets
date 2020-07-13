@@ -5,6 +5,7 @@ data class UiTweetDetails(
     val imageUrl: String?,
     val name: String,
     val userName: String,
+    val userImage: String?,
     val date: String,
     val showPlayButton: Boolean,
     val isReTweeted: Boolean

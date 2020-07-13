@@ -14,7 +14,7 @@ data class Tweet(
         val id: String,
         val screenName: String,
         val name: String,
-        val pic: String
+        val pic: String?
     )
 
     data class Media(

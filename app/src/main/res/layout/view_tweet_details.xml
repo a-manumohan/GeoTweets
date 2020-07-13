@@ -20,27 +20,26 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:paddingBottom="16dp"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingBottom="16dp">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tweetText"
                 android:layout_width="0dp"
-                android:textAppearance="@style/TweetText"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
+                android:textAppearance="@style/TweetText"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/userProfileImage"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="TextView TextView TextView TextViewTextView TextView TextView" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/tweetImage"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_marginStart="8dp"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="16dp"
@@ -48,21 +47,32 @@
                 app:layout_constraintBottom_toTopOf="@+id/playVideo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.6"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tweetText"
                 app:layout_constraintTop_toBottomOf="@+id/tweetText" />
 
             <ImageButton
                 android:id="@+id/playVideo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tweetText"
                 app:srcCompat="@drawable/ic_play_video" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/userProfileImage"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/bgProfilePic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
@@ -80,8 +90,8 @@
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/DateText"
         android:layout_marginTop="8dp"
+        android:textAppearance="@style/DateText"
         app:layout_constraintStart_toStartOf="@+id/userName"
         app:layout_constraintTop_toBottomOf="@+id/userName"
         tools:text="TextView" />
