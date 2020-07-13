@@ -4,7 +4,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
 import com.mn.geotweets.R
 import com.mn.geotweets.feature.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_tweet_details.*
@@ -17,6 +17,10 @@ class TweetDetailsFragment : BaseFragment() {
     override fun layoutId() = R.layout.fragment_tweet_details
 
     override fun viewCreated(view: View) {
+        (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
+        toolbar.setupWithNavController(findNavController())
+        toolbar.title = ""
+
         application.applicationComponent.mainComponent.inject(this)
         withViewModel(tweetDetailsViewModel)
             .state(::handleState)
@@ -35,7 +39,10 @@ class TweetDetailsFragment : BaseFragment() {
 
     private fun handleState(state: TweetDetails.State) {
         when (state) {
-            is TweetDetails.State.Details -> tweetDetailsView.bind(state.uiTweetDetails)
+            is TweetDetails.State.Details -> {
+                toolbar.title = state.uiTweetDetails.userName
+                tweetDetailsView.bind(state.uiTweetDetails)
+            }
         }
     }
 

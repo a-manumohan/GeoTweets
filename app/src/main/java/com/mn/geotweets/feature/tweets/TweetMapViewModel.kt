@@ -11,7 +11,6 @@ class TweetMapViewModel @Inject constructor(private val getTweets: GetTweets) :
     BaseViewModel<TweetMap.State, TweetMap.Event, TweetMap.Error>() {
     private var location: Location? = null
 
-
     private fun fetchTweets() {
         getTweets(TWEET_COUNT) {
             it.either(::handleFailure, ::handleTweetsSuccess)
@@ -72,7 +71,6 @@ class TweetMapViewModel @Inject constructor(private val getTweets: GetTweets) :
     }
 
     fun locationFailed() {
-
     }
 
     companion object {

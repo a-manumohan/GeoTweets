@@ -6,7 +6,6 @@ import com.mn.domain.usecase.tweets.ReTweet
 import com.mn.domain.usecase.tweets.Tweet
 import com.mn.domain.usecase.tweets.UnReTweet
 import com.mn.geotweets.feature.base.BaseViewModel
-import com.mn.geotweets.feature.details.TweetDetails
 import javax.inject.Inject
 
 class TweetDetailsViewModel @Inject constructor(
@@ -67,6 +66,7 @@ class TweetDetailsViewModel @Inject constructor(
         return UiTweetDetails(
             tweet.text,
             imageUrl,
+            tweet.user.name,
             tweet.user.screenName,
             tweet.createdAt,
             showPlayButton,

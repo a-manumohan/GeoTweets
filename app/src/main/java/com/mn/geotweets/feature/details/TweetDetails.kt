@@ -1,7 +1,5 @@
 package com.mn.geotweets.feature.details
 
-import com.mn.geotweets.feature.tweets.TweetMap
-
 interface TweetDetails {
     sealed class State {
         data class Details(val uiTweetDetails: UiTweetDetails) : State()
