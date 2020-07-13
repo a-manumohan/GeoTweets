@@ -18,12 +18,6 @@ class TweetDetailsFragment : BaseFragment() {
 
     override fun viewCreated(view: View) {
         application.applicationComponent.mainComponent.inject(this)
-
-        NavigationUI.setupActionBarWithNavController(
-            requireActivity() as AppCompatActivity,
-            findNavController()
-        )
-
         withViewModel(tweetDetailsViewModel)
             .state(::handleState)
             .event(::handleEvent)
@@ -47,7 +41,7 @@ class TweetDetailsFragment : BaseFragment() {
 
     private fun handleEvent(event: TweetDetails.Event) {
         when (event) {
-            is TweetDetails.Event.PlayVideo -> TODO()
+            is TweetDetails.Event.PlayVideo -> showVideoDialog(event.url)
         }
     }
 
@@ -63,5 +57,10 @@ class TweetDetailsFragment : BaseFragment() {
             }
             is TweetDetails.Error.GenericError -> showToast(error.message)
         }
+    }
+
+    private fun showVideoDialog(url: String) {
+        val dialog = VideoDialogFragment.newInstance(url)
+        dialog.show(childFragmentManager, "video")
     }
 }

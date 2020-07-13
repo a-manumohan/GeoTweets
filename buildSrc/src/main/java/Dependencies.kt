@@ -12,7 +12,7 @@ object Version {
     const val cardView = "1.0.0"
     const val coreKtx = "1.2.0"
     const val androidTestRunner = "1.1.1"
-    const val leakCanary = "2.0"
+    const val leakCanary = "2.4"
     const val retrofit = "2.5.0"
     const val retrofitCallAdapter = "0.9.2"
     const val googleServices = "4.3.3"
