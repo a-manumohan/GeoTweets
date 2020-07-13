@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    app:startDestination="@id/authFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/authFragment"
@@ -55,7 +55,7 @@
         android:id="@+id/tweetDetailsFragment"
         android:name="com.mn.geotweets.feature.details.TweetDetailsFragment"
         android:label="TweetDetailsFragment"
-        tools:layout="@layout/fragment_tweet_details" >
+        tools:layout="@layout/fragment_tweet_details">
         <argument
             android:name="tweetId"
             app:argType="string" />
@@ -63,6 +63,23 @@
             android:id="@+id/action_tweetDetailsFragment_to_authFragment"
             app:destination="@id/authFragment"
             app:launchSingleTop="true"
+            app:popUpTo="@id/main"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.mn.geotweets.feature.splash.SplashFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_authFragment"
+            app:destination="@id/authFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/main"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_tweetMapFragment"
+            app:destination="@id/tweetMapFragment"
             app:popUpTo="@id/main"
             app:popUpToInclusive="true" />
     </fragment>

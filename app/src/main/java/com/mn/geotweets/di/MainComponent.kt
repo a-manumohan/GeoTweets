@@ -10,6 +10,8 @@ import com.mn.geotweets.BuildConfig
 import com.mn.geotweets.feature.base.ViewModelFactory
 import com.mn.geotweets.feature.details.TweetDetailsFragment
 import com.mn.geotweets.feature.details.TweetDetailsViewModel
+import com.mn.geotweets.feature.splash.SplashFragment
+import com.mn.geotweets.feature.splash.SplashViewModel
 import com.mn.geotweets.feature.tweets.TweetMapFragment
 import com.mn.geotweets.feature.tweets.TweetMapViewModel
 import dagger.Binds
@@ -28,6 +30,7 @@ import se.akerfeldt.okhttp.signpost.SigningInterceptor
 interface MainComponent {
     fun inject(fragment: TweetMapFragment)
     fun inject(fragment: TweetDetailsFragment)
+    fun inject(fragment: SplashFragment)
 }
 
 @Module
@@ -80,4 +83,9 @@ interface MainViewModelModule {
     @IntoMap
     @ViewModelKey(TweetDetailsViewModel::class)
     fun tweetDetailsViewModel(viewModel: TweetDetailsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SplashViewModel::class)
+    fun splashViewModel(viewModel: SplashViewModel): ViewModel
 }
