@@ -24,10 +24,6 @@ abstract class BaseFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private val job = Job()
-
-    protected val fragmentScope = CoroutineScope(Dispatchers.Main + job)
-
     protected val application by lazy {
         context?.applicationContext as GeoTweetsApplication
     }
@@ -46,17 +42,6 @@ abstract class BaseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewCreated(view)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        job.cancel()
-    }
-
-    fun showLoading(show: Boolean) {
-        activity?.let {
-//            (it as BaseActivity).showLoading(show)
-        }
     }
 
     fun showToast(message: String) {
@@ -129,7 +114,4 @@ abstract class BaseFragment : Fragment() {
         return ViewModelProviders.of(this, viewModelFactory).get(T::class.java)
     }
 
-    protected inline fun <reified T> viewModel(activity: FragmentActivity): T where T : ViewModel {
-        return ViewModelProviders.of(activity, viewModelFactory).get(T::class.java)
-    }
 }
