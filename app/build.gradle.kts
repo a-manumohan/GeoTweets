@@ -78,8 +78,6 @@ dependencies {
     implementation(Libs.kotlinSdk)
     implementation(Libs.coroutinesCore)
     implementation(Libs.coroutinesAndroid)
-    implementation(Libs.coroutinesRx)
-    implementation(Libs.coroutinesRxUtils)
     implementation(Libs.lifecycle)
     kapt(Libs.lifeCycleCompiler)
     implementation(Libs.appCompat)
@@ -106,8 +104,6 @@ dependencies {
     implementation(Libs.googleMaps)
     implementation(Libs.glide)
     kapt(Libs.glideCompiler)
-
-    debugImplementation(Libs.leakCanaryDebug)
 
     testImplementation(Libs.junitApi)
     testRuntimeOnly(Libs.junitRuntime)

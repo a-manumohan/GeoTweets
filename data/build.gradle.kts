@@ -14,8 +14,6 @@ dependencies {
     implementation(Libs.kotlinSdk)
     implementation(Libs.coroutinesCore)
     implementation(Libs.coroutinesAndroid)
-    implementation(Libs.coroutinesRx)
-    implementation(Libs.coroutinesRxUtils)
     implementation(Libs.retrofit)
     implementation(Libs.retrofitConverter)
     implementation(Libs.retrofitCallAdapter)

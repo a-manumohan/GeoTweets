@@ -12,7 +12,6 @@ object Version {
     const val cardView = "1.0.0"
     const val coreKtx = "1.2.0"
     const val androidTestRunner = "1.1.1"
-    const val leakCanary = "2.4"
     const val retrofit = "2.5.0"
     const val retrofitCallAdapter = "0.9.2"
     const val googleServices = "4.3.3"
@@ -36,10 +35,6 @@ object Libs {
     const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Version.coroutines}"
     const val coroutinesAndroid =
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Version.coroutines}"
-    const val coroutinesRx =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-reactive:${Version.coroutines}"
-    const val coroutinesRxUtils =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:${Version.coroutines}"
     const val lifecycle = "androidx.lifecycle:lifecycle-extensions:${Version.lifecycle}"
     const val lifeCycleCompiler = "androidx.lifecycle:lifecycle-compiler:${Version.lifecycle}"
     const val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Version.coroutines}"
@@ -52,7 +47,6 @@ object Libs {
     const val cardView = "androidx.cardview:cardview:${Version.cardView}"
     const val coreKtx = "androidx.core:core-ktx:${Version.coreKtx}"
     const val androidTestRunner = "androidx.test:runner:${Version.androidTestRunner}"
-    const val leakCanaryDebug = "com.squareup.leakcanary:leakcanary-android:${Version.leakCanary}"
     const val retrofit = "com.squareup.retrofit2:retrofit:${Version.retrofit}"
     const val retrofitConverter = "com.squareup.retrofit2:converter-gson:${Version.retrofit}"
     const val retrofitScalarConverter =
