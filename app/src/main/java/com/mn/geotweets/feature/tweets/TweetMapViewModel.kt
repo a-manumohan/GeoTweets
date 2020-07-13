@@ -71,6 +71,11 @@ class TweetMapViewModel @Inject constructor(private val getTweets: GetTweets) :
     }
 
     fun locationFailed() {
+        error(TweetMap.Error.Location.Failed)
+    }
+
+    fun locationDenied() {
+        error(TweetMap.Error.Location.Denied)
     }
 
     companion object {

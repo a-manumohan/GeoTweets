@@ -70,6 +70,14 @@ class TweetMapFragment : BaseFragment() {
                 findNavController().navigate(direction)
             }
             is TweetMap.Error.GenericError -> showToast(error.message)
+            is TweetMap.Error.Location -> handleLocationError(error)
+        }
+    }
+
+    private fun handleLocationError(error: TweetMap.Error.Location) {
+        when (error) {
+            TweetMap.Error.Location.Denied -> showToast(R.string.location_denied)
+            TweetMap.Error.Location.Failed -> showToast(R.string.location_failed)
         }
     }
 
@@ -134,13 +142,14 @@ class TweetMapFragment : BaseFragment() {
                     grantResults[0] == PackageManager.PERMISSION_GRANTED
                 ) {
                     locationPermissionGranted = true
+                    updateMap()
+                    getDeviceLocation()
                 } else {
-                    TODO("location denied")
+                    tweetMapViewModel.locationDenied()
                 }
             }
         }
-        updateMap()
-        getDeviceLocation()
+
     }
 
     @SuppressLint("MissingPermission")

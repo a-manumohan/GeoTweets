@@ -12,4 +12,6 @@
     <string name="ok">OK</string>
     <string name="cancel">CANCEL</string>
     <string name="title_no_location">Location not available</string>
+    <string name="location_denied">Location permission is required for this app to work. Please enable it in settings</string>
+    <string name="location_failed">Could not get the current location. Please check your settings and try again</string>
 </resources>

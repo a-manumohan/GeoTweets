@@ -15,5 +15,9 @@ interface TweetMap {
         object UnknownError : Error()
         object Unauthorized : Error()
         data class GenericError(val message: String) : Error()
+        sealed class Location : Error() {
+            object Denied : Location()
+            object Failed : Location()
+        }
     }
 }
